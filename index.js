@@ -99,4 +99,15 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
 
  index++;
   
-}
+}, function (error) {
+
+    alert(error.code);
+  
+  });
+  
+  function removeRow () {
+    $(".row-" + $(this).attr("data-index")).remove();
+    database.ref().child($(this).attr("data-key")).remove();
+  };
+  
+  
