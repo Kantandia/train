@@ -132,4 +132,6 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
     $(this).toggleClass("updateButton").toggleClass("submitButton");
   };
   
-  
+  $(document).on("click", ".removeButton", removeRow);
+  $(document).on("click", ".updateButton", editRow);
+  $(document).on("click", ".submitButton", submitRow);
