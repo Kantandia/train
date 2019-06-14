@@ -43,4 +43,35 @@ $("#formID").on("submit", function (event) {
     return false;
   });
 
+database.ref().orderByChild("dateAdded").on("child_added", function (childSnapshot) {
+
+  var updateButton = $("<button>").html("<span class='glyphicon glyphicon-edit'></span>").addClass("updateButton").attr("data-index", index).attr("data-key", childSnapshot.key);
+  var removeButton = $("<button>").html("<span class='glyphicon glyphicon-remove'></span>").addClass("removeButton").attr("data-index", index).attr("data-key", childSnapshot.key);
+
+  var firstTime = childSnapshot.val().firstTime;
+  var tFrequency = parseInt(childSnapshot.val().frequency);
+  var firstTrain = moment(firstTime, "HH:mm").subtract(1, "years");
+  console.log(firstTrain);
+  console.log(firstTime);
+  var currentTime = moment();
+  var currentTimeCalc = moment().subtract(1, "years");
+  var diffTime = moment().diff(moment(firstTrain), "minutes");
+  var tRemainder = diffTime%tFrequency;
+  var minutesRemaining = tFrequency - tRemainder;
+  var nextTRain = moment().add(minutesRemaining, "minutes").format ("hh:mm A");
+  var beforeCalc = moment(firstTrain).diff(currentTimeCalc, "minutes");
+  var beforeMinutes = Math.ceil(moment.duration(beforeCalc).asMinutes());
+
+  if ((currentTimeCalc - firstTrain) < 0) {
+    nextTrain = childSnapshot.val().firstTime;
+    console.log("Before First Train");
+    minutesRemaining = beforeMinutes;
+  }
+  else {
+    nextTrain = moment().add(minutesRemaining, "minutes").format("hh:mm A");
+    minutesRemaining = tFrequency - tRemainder;
+    console.log("Working");
+  }
+
+
   
