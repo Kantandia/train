@@ -110,4 +110,11 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
     database.ref().child($(this).attr("data-key")).remove();
   };
   
+  function editRow () {
+    $(".row-" + $(this).attr("data-index")).children().eq(1).html("<textarea class='newName'></textarea>");
+    $(".row-" + $(this).attr("data-index")).children().eq(2).html("<textarea class='newDestination'></textarea>");
+    $(".row-" + $(this).attr("data-index")).children().eq(3).html("<textarea class='newFrequency' type='number'></textarea>");
+    $(this).toggleClass("updateButton").toggleClass("submitButton");
+  };
+  
   
