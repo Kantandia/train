@@ -74,4 +74,14 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
   }
 
 
+  var newRow = $("<tr>");
+  newRow.addClass("row-" + index);
+  var cell1 = $("<td>").append(updateButton);
+  var cell2 = $("<td>").text(childSnapshot.val().name);
+  var cell3 = $("<td>").text(childSnapshot.val().destination);
+  var cell4 = $("<td>").text(childSnapshot.val().frequency);
+  var cell5 = $("<td>").text(nextTrain);
+  var cell6 = $("<td>").text(minutesRemaining);
+  var cell7 = $("<td>").append(removeButton);
+
   
