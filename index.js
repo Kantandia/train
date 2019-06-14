@@ -9,7 +9,38 @@
     messagingSenderId: "390685970881",
     appId: "1:390685970881:web:e1441dea655d6de1"
   };
-  
+
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
+
+
+
+
+  var database = firebase.database();
+
+$("#formID").on("submit", function (event) {
+    event.preventDefault();
+
+    var name = $("#trainName").val().trim();
+    var destination = $("#trainDestination").val().trim();
+    var firstTime = $("#firstTrainTime").val().trim();
+    var frequency = $("#frequency").val().trim();
+
+    database.ref().push({
+      name: name,
+      destination: destination,
+      firstTime: firstTime,
+      frequency: frequency
+    });
+
+    $("#trainName").val("");
+    $("#trainDestination").val("");
+    $("#firstTrainTime").val("");
+    $("#frequency").val("");
+
+    return false;
+  });
+
+  
