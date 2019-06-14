@@ -74,6 +74,8 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
   }
 
 
+
+
   var newRow = $("<tr>");
   newRow.addClass("row-" + index);
   var cell1 = $("<td>").append(updateButton);
@@ -84,4 +86,17 @@ database.ref().orderByChild("dateAdded").on("child_added", function (childSnapsh
   var cell6 = $("<td>").text(minutesRemaining);
   var cell7 = $("<td>").append(removeButton);
 
+  newRow
+    .append(cell1)
+    .append(cell2)
+    .append(cell3)
+    .append(cell4)
+    .append(cell5)
+    .append(cell6)
+    .append(cell7);
+
+ $("#tableContent").append(newRow);
+
+ index++;
   
+}
